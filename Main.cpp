@@ -7,11 +7,12 @@
 #include<glm/gtc/type_ptr.hpp>
 
 #include"Texture.h"
-#include"shaderClass.h"
+#include"ShaderClass.h"
 #include"VAO.h"
 #include"VBO.h"
 #include"EBO.h"
 #include"Camera.h"
+#include"Estante.h"
 
 // Funciones de GLFW
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -20,15 +21,13 @@ void processInput(GLFWwindow* window);
 const unsigned int width = 800;
 const unsigned int height = 800;
 
-
-
 // Vertices coordinates
 GLfloat vertices[] =
 { //     COORDINATES     /        COLORS        /    TexCoord    /       NORMALS     //
-	-6.0f, 0.0f,  6.0f,		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,		0.0f, 1.0f, 0.0f,
-	-6.0f, 0.0f, -6.0f,		0.0f, 0.0f, 0.0f,		0.0f, 1.0f,		0.0f, 1.0f, 0.0f,
-	 6.0f, 0.0f, -6.0f,		0.0f, 0.0f, 0.0f,		1.0f, 1.0f,		0.0f, 1.0f, 0.0f,
-	 6.0f, 0.0f,  6.0f,		0.0f, 0.0f, 0.0f,		1.0f, 0.0f,		0.0f, 1.0f, 0.0f
+	-20.0f, 0.0f,  20.0f,		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,		0.0f, 1.0f, 0.0f,
+	-20.0f, 0.0f, -20.0f,		0.0f, 0.0f, 0.0f,		0.0f, 1.0f,		0.0f, 1.0f, 0.0f,
+	 20.0f, 0.0f, -20.0f,		0.0f, 0.0f, 0.0f,		1.0f, 1.0f,		0.0f, 1.0f, 0.0f,
+	 20.0f, 0.0f,  20.0f,		0.0f, 0.0f, 0.0f,		1.0f, 0.0f,		0.0f, 1.0f, 0.0f
 };
 
 // Indices for vertices order
@@ -40,14 +39,14 @@ GLuint indices[] =
 
 GLfloat lightVertices[] =
 { //     COORDINATES     //
-	-0.1f, -0.1f,  0.1f,
-	-0.1f, -0.1f, -0.1f,
-	 0.1f, -0.1f, -0.1f,
-	 0.1f, -0.1f,  0.1f,
-	-0.1f,  0.1f,  0.1f,
-	-0.1f,  0.1f, -0.1f,
-	 0.1f,  0.1f, -0.1f,
-	 0.1f,  0.1f,  0.1f
+	-20.0f, -5.0f,  0.03f,
+	-20.0f, -5.0f, -0.03f,
+	 20.0f, -5.0f, -0.03f,
+	 20.0f, -5.0f,  0.03f,
+	-20.0f,  5.0f,  0.03f,
+	-20.0f,  5.0f, -0.03f,
+	 20.0f,  5.0f, -0.03f,
+	 20.0f,  5.0f,  0.03f
 };
 
 GLuint lightIndices[] =
@@ -78,8 +77,8 @@ int main()
 	// Tell GLFW we are using the CORE profile
 	// So that means we only have the modern functions
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
-	GLFWwindow* window = glfwCreateWindow(1150, 680, "Super Market", glfwGetPrimaryMonitor(), NULL);	// Error check if the window fails to create
+	// Create window"
+	GLFWwindow* window = glfwCreateWindow(1150, 680, "Super Market", glfwGetPrimaryMonitor() , NULL);	// Error check if the window fails to create
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -127,7 +126,7 @@ int main()
 	EBO1.Unbind();
 
 
-	// Shader for light cube
+	// Shader for light cube1
 	Shader lightShader("light.vert", "light.frag");
 	// Generates Vertex Array Object and binds it
 	VAO lightVAO;
@@ -143,8 +142,9 @@ int main()
 	lightVBO.Unbind();
 	lightEBO.Unbind();
 
-	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
+	//matrices de objetos
+	glm::vec4 lightColor = glm::vec4(0.7f, 0.7f, 0.7f, 1.0f);
+	glm::vec3 lightPos = glm::vec3(0.0f, 5.0f, -20.0f);
 	glm::mat4 lightModel = glm::mat4(1.0f);
 	lightModel = glm::translate(lightModel, lightPos);
 
@@ -152,25 +152,50 @@ int main()
 	glm::mat4 objectModel = glm::mat4(1.0f);
 	objectModel = glm::translate(objectModel, objectPos);
 
-
 	lightShader.Activate();
 	glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(lightModel));
 	glUniform4f(glGetUniformLocation(lightShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	shaderProgram.Activate();
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(objectModel));
 	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	glUniform3f(glGetUniformLocation(shaderProgram.ID, "light"), lightPos.x, lightPos.y, lightPos.z);
 
-	// Texture
-	Texture planksTex("piso.png", GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE);
-	planksTex.texUnit(shaderProgram, "tex0", 0);
+	//Texture
+	int widthImg, heightImg, numColCh;
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char* bytes = stbi_load("texturas/piso.png", &widthImg, &heightImg, &numColCh, 0);
+
+	GLuint texture;
+	glGenTextures(1, &texture);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	//Para ubicar la textura  
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
+
+	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	//stbi_image_free(bytes); 
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	GLuint tex0Uni = glGetUniformLocation(shaderProgram.ID, "tex0");
+	shaderProgram.Activate();
+	glUniform1i(tex0Uni, 0);
 
 
 	// Enables the Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
 	// Creates camera object
-	Camera camera(width, height, glm::vec3(0.0f, 0.5f, 2.0f));
+	Camera camera(width, height, glm::vec3(0.0f, 2.5f, 0.0f));
+
+	Estante estante();
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -192,8 +217,9 @@ int main()
 		glUniform3f(glGetUniformLocation(shaderProgram.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 		// Export the camMatrix to the Vertex Shader of the pyramid
 		camera.Matrix(shaderProgram, "camMatrix");
+		shaderProgram.Activate();
 		// Binds textures so that they appear in the rendering
-		planksTex.Bind();
+		glBindTexture(GL_TEXTURE_2D, texture);
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
 		// Draw primitives, number of indices, datatype of indices, index of indices
@@ -218,7 +244,7 @@ int main()
 	VAO1.Delete();
 	VBO1.Delete();
 	EBO1.Delete();
-	planksTex.Delete();
+	glDeleteTextures(1, &texture);
 	shaderProgram.Delete();
 	lightVAO.Delete();
 	lightVBO.Delete();

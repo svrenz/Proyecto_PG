@@ -15,7 +15,7 @@ Texture::Texture(const char* image, GLenum texType, GLuint slot, GLenum format, 
 	// Generates an OpenGL texture object
 	glGenTextures(1, &ID);
 	// Assigns the texture to a Texture Unit
-	glActiveTexture(GL_TEXTURE0 + slot);
+	glActiveTexture(GL_TEXTURE0 +  slot);
 	unit = slot;
 	glBindTexture(texType, ID);
 
