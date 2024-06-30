@@ -6,13 +6,16 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 #include "shaderClass.h"
-#include "Textura.h"
+#include "Textura_J.h"
+#include "Textura_P.h"
 #include "Camera.h"
 #include "Metodos.h"
 #include "Buffer.h"
 #include "Array.h"
+using namespace std;
 
 int main()
 {
@@ -25,7 +28,7 @@ int main()
     // Get the primary monitor and its video mode
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-    GLFWwindow* window = glfwCreateWindow(mode->width, mode->height, "Full-Screen Window", monitor, NULL);
+    GLFWwindow* window = glfwCreateWindow(mode->width, mode->height, "SuperMarket", monitor, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -46,15 +49,34 @@ int main()
         return -1;
     }
 
-    glEnable(GL_DEPTH_TEST);
-    Shader ourShader("shader.vs", "shader.fs");
-    Array vaoFloor, vaoWall;
-    Metodos::Make_Floor(vaoFloor);
-    Metodos::Make_Wall(vaoWall);
-    Textura texPiso("textures/piso.jpg", ourShader), texPared("textures/paredBase.jpg", ourShader);
+    glEnable(GL_DEPTH_TEST); //Activar pruebas de profundidad
+    Shader ourShader("shader.vs", "shader.fs"), skyboxShader("skybox.vs", "skybox.fs"); //shaders
+
+    Array vaoFloor, vaoWall, skyboxVAO, vaoRoof, vaoLogo, vaoSky, vaoContSlogan; //VAOs
+
+    Metodos::Make_Floor(vaoFloor);//Crear piso
+    Metodos::Make_Wall(vaoWall); //Crear paredes
+    Metodos::Make_Roof(vaoRoof); //crear el techo
+    Metodos::Make_Logo(vaoLogo); //crear el logo pali
+    Metodos::Make_Sky(vaoSky); //crear el "cielo razo"
+    Metodos::Make_ContSlogan(vaoContSlogan); //crear locker
+    //Metodos::Make_faceLock(vaoFaceLock);
+    
+    //cargar texturas
+    Textura_J texPiso("textures/piso.jpg", ourShader, GL_REPEAT),
+        texPared("textures/paredBase.jpg", ourShader, GL_REPEAT),
+        texTecho("textures/techo3.jpg", ourShader, GL_REPEAT);
+
+    Textura_P texLogo("textures/logo_pali.png", ourShader);
+
+    unsigned int cubemapTexture = Metodos::Make_Skybox(skyboxVAO, skyboxShader); //crear el skybox
+
     ourShader.use();
+
     texPiso.getLocation(ourShader, 0);
     texPared.getLocation(ourShader, 0);
+    texTecho.getLocation(ourShader, 0);
+    texLogo.getLocation(ourShader, 0);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -63,16 +85,12 @@ int main()
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // input
-        // -----
-        Metodos::processInput(window);
-
+        Metodos::processInput(window); // input
         // render
-        // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // activate shader
+        // activar shader
         ourShader.use();
 
         // bind textures on corresponding texture units
@@ -84,11 +102,29 @@ int main()
         glm::mat4 view = camera.GetViewMatrix();
         ourShader.setMat4("view", view);
         vaoFloor.Bind();
-        Metodos::Draw_Floor(ourShader);
+        Metodos::Draw_Floor(ourShader); //dibujar el piso
 
         texPared.BindText(GL_TEXTURE0);
         vaoWall.Bind();
-        Metodos::Draw_Wall(ourShader);
+        Metodos::Draw_Wall(ourShader); //dibujar paredes
+
+        texTecho.BindText(GL_TEXTURE0);
+        vaoRoof.Bind();
+        Metodos::Draw_Roof(ourShader);
+
+        texLogo.BindText(GL_TEXTURE0);
+        vaoLogo.Bind();
+        Metodos::Draw_Logo(ourShader);
+
+        texPared.BindText(GL_TEXTURE0);
+        vaoSky.Bind();
+        Metodos::Draw_Sky(ourShader);
+
+        texTecho.BindText(GL_TEXTURE0);
+        vaoContSlogan.Bind();
+        Metodos::Draw_ContSlogan(ourShader);
+
+        Metodos::Draw_Skybox(skyboxVAO, skyboxShader, view, projection, cubemapTexture); //graficar skybox
 
         glfwSwapBuffers(window);
         glfwPollEvents();

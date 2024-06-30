@@ -19,6 +19,9 @@
     <Filter Include="Archivos de recursos\textures">
       <UniqueIdentifier>{944f4925-f991-4f59-8e27-01c9330fca56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de recursos\textures\Skybox">
+      <UniqueIdentifier>{87f20111-fb76-4527-8d61-509bd718014e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\include\glad.c">
@@ -35,7 +38,7 @@
     <ClInclude Include="shaderClass.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Textura.h">
+    <ClInclude Include="Textura_J.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
@@ -50,6 +53,12 @@
     <ClInclude Include="Array.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Textura_P.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.vs">
@@ -58,13 +67,49 @@
     <None Include="shader.fs">
       <Filter>Archivos de recursos\shaders</Filter>
     </None>
+    <None Include="skybox.vs">
+      <Filter>Archivos de recursos\shaders</Filter>
+    </None>
+    <None Include="skybox.fs">
+      <Filter>Archivos de recursos\shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\piso.jpg">
-      <Filter>Archivos de recursos\shaders</Filter>
+      <Filter>Archivos de recursos\textures</Filter>
     </Image>
-    <Image Include="textures\pared2.jpg">
-      <Filter>Archivos de recursos\shaders</Filter>
+    <Image Include="textures\paredBase.jpg">
+      <Filter>Archivos de recursos\textures</Filter>
+    </Image>
+    <Image Include="textures\Skybox\back.jpg">
+      <Filter>Archivos de recursos\textures\Skybox</Filter>
+    </Image>
+    <Image Include="textures\Skybox\bottom.jpg">
+      <Filter>Archivos de recursos\textures\Skybox</Filter>
+    </Image>
+    <Image Include="textures\Skybox\front.jpg">
+      <Filter>Archivos de recursos\textures\Skybox</Filter>
+    </Image>
+    <Image Include="textures\Skybox\left.jpg">
+      <Filter>Archivos de recursos\textures\Skybox</Filter>
+    </Image>
+    <Image Include="textures\Skybox\right.jpg">
+      <Filter>Archivos de recursos\textures\Skybox</Filter>
+    </Image>
+    <Image Include="textures\Skybox\top.jpg">
+      <Filter>Archivos de recursos\textures\Skybox</Filter>
+    </Image>
+    <Image Include="textures\techo.jpg">
+      <Filter>Archivos de recursos\textures</Filter>
+    </Image>
+    <Image Include="textures\logo_pali.png">
+      <Filter>Archivos de recursos\textures</Filter>
+    </Image>
+    <Image Include="textures\pisoExterno.jpg">
+      <Filter>Archivos de recursos\textures</Filter>
+    </Image>
+    <Image Include="textures\techo3.jpg">
+      <Filter>Archivos de recursos\textures</Filter>
     </Image>
   </ItemGroup>
 </Project>
