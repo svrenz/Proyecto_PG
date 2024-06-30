@@ -1,3 +1,5 @@
-﻿  glad.c
-  Main.cpp
+﻿  Main.cpp
+C:\Users\Zetas\Documents\Proyectos\Proyecto_PG\Array.h(20,65): warning C4244: 'argumento': conversión de 'GLsizeiptr' a 'GLsizei'; posible pérdida de datos
+  (compilando archivo de origen "Main.cpp")
+  
   Proyecto_PG.vcxproj -> C:\Users\Zetas\Documents\Proyectos\Proyecto_PG\x64\Debug\Proyecto_PG.exe
