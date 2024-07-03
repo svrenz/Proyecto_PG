@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <irrklang/irrKlang.h>
 
 #include "shaderClass.h"
 #include "Textura_J.h"
@@ -16,14 +17,16 @@
 #include "Buffer.h"
 #include "Array.h"
 using namespace std;
+using namespace irrklang;
 
 int main()
 {
-
+   
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 
     // Get the primary monitor and its video mode
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
@@ -48,6 +51,13 @@ int main()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+    //Adding ambient sound
+    ISoundEngine* engine = createIrrKlangDevice();
+    if (!engine) {
+        return 0;
+    }
+    engine->play2D("Audio/musicstore.mp3", true);
+   
 
     glEnable(GL_DEPTH_TEST); //Activar pruebas de profundidad
     Shader ourShader("shader.vs", "shader.fs"), skyboxShader("skybox.vs", "skybox.fs"); //shaders
