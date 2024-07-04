@@ -5,9 +5,8 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/virtualmarket.jpg" alt="Logo" width="410" height="200">
-  </a>
+ 
+[![virtualmarket.jpg](https://i.postimg.cc/52ns3D5V/virtualmarket.jpg)](https://postimg.cc/nX9KVRwR)
 
   <h3 align="center">Exploring the SuperMarket 🛒</h3>
 
@@ -48,12 +47,9 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 # About The Project
-
- <img src="images/WhatsApp Image 2024-07-03 at 9.29.24 PM.jpeg">
+[![tour-virtual-360-mercat-de-la-merce.jpg](https://i.postimg.cc/HLwrwC1Y/tour-virtual-360-mercat-de-la-merce.jpg)](https://postimg.cc/R30Cmy0y)
 
 The Virtual Supermarket Tour is an interactive app we developed using OpenGL. This innovative application provides you with an immersive shopping experience in a realistic 3D environment.
 
@@ -89,13 +85,13 @@ To run the Virtual Supermarket Tour application, follow these steps:
   Note: There is no need to move or modify any files within the extracted folder. The project is configured to run directly from the extracted location.
 
 ## Screenshots
-<img src="images/Captura de pantalla (17).png">
-<hr>
-<img src="images/WhatsApp Image 2024-07-03 at 9.29.19 PM.jpeg">
-<hr>
-<img src="images/WhatsApp Image 2024-07-03 at 9.29.20 PM.jpeg">
-<hr>
-<img src="images/WhatsApp Image 2024-07-03 at 9.29.22 PM.jpeg">
+[![Captura-de-pantalla-17.png](https://i.postimg.cc/3JqYWf6t/Captura-de-pantalla-17.png)](https://postimg.cc/fJY6rCMd)
+
+[![Whats-App-Image-2024-07-03-at-9-29-19-PM.jpg](https://i.postimg.cc/Px721Zjn/Whats-App-Image-2024-07-03-at-9-29-19-PM.jpg)](https://postimg.cc/qh8sTNq1)
+
+[![Whats-App-Image-2024-07-03-at-9-29-20-PM.jpg](https://i.postimg.cc/x1jpD9g7/Whats-App-Image-2024-07-03-at-9-29-20-PM.jpg)](https://postimg.cc/YhVzQK5f)
+
+[![Captura-de-pantalla-19.png](https://i.postimg.cc/pTM1SzSQ/Captura-de-pantalla-19.png)](https://postimg.cc/zLpjbb83)
 
 ## Creation 
 
