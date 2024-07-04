@@ -27,12 +27,16 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Metodos.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="shaderClass.h" />
     <ClInclude Include="Textura_J.h" />
     <ClInclude Include="Textura_P.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="model.fs" />
+    <None Include="model.vs" />
     <None Include="shader.fs" />
     <None Include="shader.vs" />
     <None Include="skybox.fs" />
@@ -40,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\logo_pali.png" />
+    <Image Include="textures\pared2.jpg" />
     <Image Include="textures\paredBase.jpg" />
     <Image Include="textures\piso.jpg" />
     <Image Include="textures\pisoExterno.jpg" />
@@ -50,6 +55,7 @@
     <Image Include="textures\Skybox\right.jpg" />
     <Image Include="textures\Skybox\top.jpg" />
     <Image Include="textures\techo.jpg" />
+    <Image Include="textures\techo2.jpg" />
     <Image Include="textures\techo3.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -150,7 +156,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glew32s.lib;glfw3.lib;soil2-debug.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glew32s.lib;glfw3.lib;soil2-debug.lib;assimp-vc143-mtd.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -167,7 +173,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glew32s.lib;glfw3.lib;soil2-debug.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glew32s.lib;glfw3.lib;soil2-debug.lib;assimp-vc143-mtd.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

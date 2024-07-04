@@ -16,6 +16,7 @@
 #include "Camera.h"
 #include "Array.h"
 #include "Buffer.h"
+#include "Model.h"
 
 using namespace std;
 
@@ -28,7 +29,8 @@ static float deltaTime = 0.0f;	// time between current frame and last frame
 static float lastFrame = 0.0f;
 
 // camera
-Camera camera(glm::vec3(10.0f, 1.5f, 25.0f));
+Camera camera(glm::vec3(3.0f, 1.5f, 25.0f));
+//Camera camera(glm::vec3(0.0f, 0.0f, 0.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -276,16 +278,16 @@ public:
         vao.Bind();
         Buffer vbo(vertices, sizeof(vertices));
         vao.linkVBO(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);
-        vao.linkVBO(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        vao.linkVBO(vbo, 2, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         vao.Unbind();
         vbo.Unbind();
     }
 
 	static void Draw_Floor(Shader ourShader)
 	{
-        for (float i = 0; i < 20; i++)
+        for (float i = -10; i < 30; i++)
         {
-            for (float j = 0; j < 20; j++)
+            for (float j = -10; j < 30; j++)
             {
                 glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
                 model = glm::translate(model, glm::vec3(i, 0.0f, j));
@@ -300,7 +302,7 @@ public:
         vao.Bind();
         Buffer vbo(vertices, sizeof(vertices));
         vao.linkVBO(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);
-        vao.linkVBO(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        vao.linkVBO(vbo, 2, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         vao.Unbind();
         vbo.Unbind();
     }
@@ -334,14 +336,14 @@ public:
                 glDrawArrays(GL_TRIANGLES, 0, 36);
             }
             //wall four
-            for (float j = 0; j < 8; j++)
+            for (float j = 0; j < 2; j++)
             {
                 glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
                 model = glm::translate(model, glm::vec3(j, i, 19.0f));
                 ourShader.setMat4("model", model);
                 glDrawArrays(GL_TRIANGLES, 0, 36);
             }
-            for (float j = 12; j < 20; j++)
+            for (float j = 6; j < 20; j++)
             {
                 glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
                 model = glm::translate(model, glm::vec3(j, i, 19.0f));
@@ -356,7 +358,7 @@ public:
         vao.Bind();
         Buffer vbo(vertices, sizeof(vertices));
         vao.linkVBO(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);
-        vao.linkVBO(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        vao.linkVBO(vbo, 2, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         vao.Unbind();
         vbo.Unbind();
     }
@@ -387,7 +389,7 @@ public:
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(LogoIndices), LogoIndices, GL_STATIC_DRAW);
         vao.linkVBO(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);
-        vao.linkVBO(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        vao.linkVBO(vbo, 2, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         vao.Unbind();
         vbo.Unbind();
     }
@@ -409,7 +411,7 @@ public:
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(CieloIndices), CieloIndices, GL_STATIC_DRAW);
         vao.linkVBO(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);
-        vao.linkVBO(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        vao.linkVBO(vbo, 2, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         vao.Unbind();
         vbo.Unbind();
     }
@@ -422,31 +424,12 @@ public:
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     }
     /*--------------------------------------------------------------------------------------------------------------*/
-
-    //static void Make_Door(Array vao)
-    //{
-    //    vao.Bind();
-    //    Buffer vbo(, sizeof());
-    //    vao.linkVBO(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);
-    //    vao.linkVBO(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    //    vao.Unbind();
-    //    vbo.Unbind();
-    //}
-    //
-    //static void Draw_Door(Shader ourShader)
-    //{
-    //    glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-    //    model = glm::translate(model, glm::vec3(15.0f, 1.5, 20.0f));
-    //    Color.setMat4("model", model);
-    //    glDrawArrays(GL_TRIANGLES, 0, 36);
-    //}
-
     static void Make_ContSlogan(Array vao)
     {
         vao.Bind();
         Buffer vbo(ContVertices, sizeof(ContVertices));
         vao.linkVBO(vbo, 0, 3, GL_FLOAT, 5 * sizeof(float), (void*)0);
-        vao.linkVBO(vbo, 1, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        vao.linkVBO(vbo, 2, 2, GL_FLOAT, 5 * sizeof(float), (void*)(3 * sizeof(float)));
         vao.Unbind();
         vbo.Unbind();
     }
@@ -455,14 +438,268 @@ public:
     {
         for (float i = 0; i < 20; i++)
         {
-                glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-                model = glm::translate(model, glm::vec3(i, 4.0f, 20.5f));
-                ourShader.setMat4("model", model);
-                glDrawArrays(GL_TRIANGLES, 0, 36);
+            glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+            model = glm::translate(model, glm::vec3(i, 4.0f, 20.5f));
+            ourShader.setMat4("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
     }
-/*--------------- metodos de entrada ---------------*/
+    /*--------------------------------------------------------------------------------------------------------------*/
+
+    static void Draw_Chips(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.2f, 0.5f, 2.5f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        //model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.35f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+        
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.2f, 0.5f, 5.5f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        //model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.35f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+        
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.2f, 0.5f, 8.5f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        //model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.35f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+        
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.2f, 0.5f, 11.5f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        //model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.35f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_ATM(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(1.0f, 0.5f, 14.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(1.0f, 0.5f, 15.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(1.0f, 0.5f, 16.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_Checkout(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(16.0f, 0.5f, 11.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.5f, 0.5f, 11.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(9.0f, 0.5f, 11.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_WaterFridget(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(3.0f, 0.5f, 1.5f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.0f, 0.5f, 1.5f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(5.0f, 0.5f, 1.5f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    
+    static void Draw_Mama(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(1.0f, 0.5f, 18.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(145.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.09f, 0.09f, 0.09f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(7.0f, 0.5f, 18.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-145.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.09f, 0.09f, 0.09f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_AssetPack(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(10.0f, 0.5f, 5.0f)); // translate it down so it's at the center of the scene
+        //model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_Frutas(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 0.5f, 1.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.0f, 0.5f, 1.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(16.0f, 0.5f, 1.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    
+    static void Draw_Meat(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(15.6f, 1.8f, 2.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(15.6f, 1.8f, 6.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_Terreno(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(9.5f, -1.5f, 9.5f)); // translate it down so it's at the center of the scene
+        //model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 0.1f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_table(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(14.0f, 0.5f, 17.8f)); // translate it down so it's at the center of the scene
+        //model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.03f, 0.013f, 0.025f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------------*/
+    static void Draw_Drinks(Model ourModel, Shader modelShader)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(6.0f, 0.5f, 5.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(6.0f, 0.5f, 7.2f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(6.5f, 0.5f, 5.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(6.5f, 0.5f, 7.2f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.0f, 0.5f, 5.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.0f, 0.5f, 7.2f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.5f, 0.5f, 5.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.5f, 0.5f, 7.2f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.5f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        modelShader.setMat4("model", model);
+        ourModel.Draw(modelShader);
+    }
+
+    /*--------------- metodos de entrada ---------------*/
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     {
         glViewport(0, 0, width, height);

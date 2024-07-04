@@ -1,0 +1,11 @@
+Model Information:
+* title:	Water Fridge
+* source:	https://sketchfab.com/3d-models/water-fridge-c57d169e7fe947a19215636da64d5140
+* author:	Luis Carlos CG (https://sketchfab.com/luis_cg)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Water Fridge" (https://sketchfab.com/3d-models/water-fridge-c57d169e7fe947a19215636da64d5140) by Luis Carlos CG (https://sketchfab.com/luis_cg) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

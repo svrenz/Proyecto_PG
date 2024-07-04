@@ -1,0 +1,11 @@
+Model Information:
+* title:	Jamon Aisle Supermarket Scan
+* source:	https://sketchfab.com/3d-models/jamon-aisle-supermarket-scan-d56c0d213e1449eabbc7c6e3b83a7551
+* author:	patritevi (https://sketchfab.com/patritevi)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Jamon Aisle Supermarket Scan" (https://sketchfab.com/3d-models/jamon-aisle-supermarket-scan-d56c0d213e1449eabbc7c6e3b83a7551) by patritevi (https://sketchfab.com/patritevi) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

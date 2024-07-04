@@ -1,0 +1,11 @@
+Model Information:
+* title:	ATM Machine Model
+* source:	https://sketchfab.com/3d-models/atm-machine-model-efd5d7593cf44a51b5af435f8e77caa2
+* author:	Murkablo (https://sketchfab.com/Murk)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "ATM Machine Model" (https://sketchfab.com/3d-models/atm-machine-model-efd5d7593cf44a51b5af435f8e77caa2) by Murkablo (https://sketchfab.com/Murk) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

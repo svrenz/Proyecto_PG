@@ -1,0 +1,11 @@
+Model Information:
+* title:	Supermarket Checkout
+* source:	https://sketchfab.com/3d-models/supermarket-checkout-e750d80c13be46dca46d1eb8412770b3
+* author:	rhcreations (https://sketchfab.com/rhcreations)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Supermarket Checkout" (https://sketchfab.com/3d-models/supermarket-checkout-e750d80c13be46dca46d1eb8412770b3) by rhcreations (https://sketchfab.com/rhcreations) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

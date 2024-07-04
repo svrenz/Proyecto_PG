@@ -1,0 +1,11 @@
+Model Information:
+* title:	Supermarket fruit display
+* source:	https://sketchfab.com/3d-models/supermarket-fruit-display-23862854452f40d3a957c20335dcdb0c
+* author:	hinleung (https://sketchfab.com/hinleung)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Supermarket fruit display" (https://sketchfab.com/3d-models/supermarket-fruit-display-23862854452f40d3a957c20335dcdb0c) by hinleung (https://sketchfab.com/hinleung) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

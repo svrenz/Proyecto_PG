@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mesa de TV tipo Industrial
+* source:	https://sketchfab.com/3d-models/mesa-de-tv-tipo-industrial-aca4ccfb0fa34873aff359d970d9e6e9
+* author:	HDK_Objetos (https://sketchfab.com/HDK_Objetos)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mesa de TV tipo Industrial" (https://sketchfab.com/3d-models/mesa-de-tv-tipo-industrial-aca4ccfb0fa34873aff359d970d9e6e9) by HDK_Objetos (https://sketchfab.com/HDK_Objetos) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

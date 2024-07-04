@@ -53,10 +53,13 @@
     <ClInclude Include="Array.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Skybox.h">
+    <ClInclude Include="Textura_P.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Textura_P.h">
+    <ClInclude Include="Mesh.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,6 +74,12 @@
       <Filter>Archivos de recursos\shaders</Filter>
     </None>
     <None Include="skybox.fs">
+      <Filter>Archivos de recursos\shaders</Filter>
+    </None>
+    <None Include="model.fs">
+      <Filter>Archivos de recursos\shaders</Filter>
+    </None>
+    <None Include="model.vs">
       <Filter>Archivos de recursos\shaders</Filter>
     </None>
   </ItemGroup>
@@ -109,6 +118,12 @@
       <Filter>Archivos de recursos\textures</Filter>
     </Image>
     <Image Include="textures\techo3.jpg">
+      <Filter>Archivos de recursos\textures</Filter>
+    </Image>
+    <Image Include="textures\pared2.jpg">
+      <Filter>Archivos de recursos\textures</Filter>
+    </Image>
+    <Image Include="textures\techo2.jpg">
       <Filter>Archivos de recursos\textures</Filter>
     </Image>
   </ItemGroup>
